@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        background-color: #ffe4e6;
+        color: #333;
+        text-align: center;
+        padding-top: 90px;
+    }
+    .header {
+        background-color: #fff;
+        padding: 10px 0;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+    }
+    .profile-img {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        border: 5px solid #ff6f91;
+        object-fit: cover;
+        margin-bottom: 20px;
+    }
+    .login {
+        max-width: 400px;
+        margin: 2rem auto;
+    }
+    .login label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: bold;
+        color: #333;
+    }
+    .login input {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 1rem;
+        transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .login input:focus {
+        outline: none;
+        border-color: #ff6f91;
+        box-shadow: 0 0 6px rgba(255, 111, 145, 0.4);
+    }
+    .login button {
+        width: 100%;
+        padding: 0.75rem;
+        margin-top: 1rem;
+        font-size: 1rem;
+        font-weight: bold;
+        color: #fff;
+        background: linear-gradient(45deg, #ff6f91, #ff8e53);
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.3s;
+    }
+    .login button:hover {
+        box-shadow: 0 8px 15px rgba(255, 111, 145, 0.4);
+        transform: translateY(-2px);
+    }
+    .login button:active {
+        box-shadow: 0 4px 10px rgba(253, 65, 109, 0.3);
+        transform: translateY(0);
+    }
+</style>
+<body>
+    
+    <div class="main-profile">
+        <img src="image/profile.jpg" alt="Profile" class="profile-img">
+    </div>
+
+    <div class="login">
+        <form id="loginForm">
+            <label for="email">อีเมล</label>
+            <input type="email" id="email" name="email" placeholder="กรอกอีเมล" required>
+
+            <label for="password">รหัสผ่าน</label>
+            <input type="password" id="password" name="password" placeholder="กรอกรหัสผ่าน" required>
+
+            <button type="submit" id="loginButton">เข้าสู่ระบบ</button>
+            <button type="button" id="GoToregister">ลงทะเบียน</button>
+            <div id="login-result" class="login-result"></div>
+        </form>
+         <!-- เชื่อมไฟล์ JavaScript -->
+         <script src="script.js"></script>
+    </div>
+    <script src="script.js"></script>
+    </body>
+
+    <script>
+        // Event Listener สำหรับการล็อกอิน
+        document.getElementById('loginForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const resultDiv = document.getElementById('login-result');
+
+            if (!email || !password) {
+                resultDiv.textContent = "กรุณากรอกอีเมลและรหัสผ่าน!";
+                resultDiv.className = "error"; 
+                return;
+            }
+
+            // ดึงข้อมูลผู้ใช้จาก localStorage
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+
+            // ค้นหาผู้ใช้จากอีเมลและรหัสผ่าน
+            const user = users.find(user => user.email === email && user.password === password);
+
+            if (user) {
+                resultDiv.textContent = "เข้าสู่ระบบสำเร็จ!";
+                resultDiv.className = "success"; 
+
+                // บันทึกอีเมลของผู้ใช้ใน localStorage
+                localStorage.setItem('loggedInEmail', email);
+
+                setTimeout(() => {
+                    window.location.href = "loading.html"; 
+                }, 2000);
+
+                setTimeout(() => {
+                    window.location.href = "home.html"; 
+                }, 5000);
+            } else {
+                resultDiv.textContent = "ชื่อผู้ใช้งานหรือรหัสผ่านไม่ถูกต้อง!";
+                resultDiv.className = "error"; 
+            }
+        });
+
+        // Event Listener สำหรับปุ่ม "ลงทะเบียน"
+        document.getElementById('GoToregister').addEventListener('click', function () {
+            window.location.href = "register.html";
+        });
+
+        
+    </script>
+</body>
+</html>

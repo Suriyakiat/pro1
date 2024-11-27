@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOME</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        background-color: #ffe4e6;
+        color: #333;
+        text-align: center;
+        padding-top: 90px;
+        /* เพิ่มระยะห่างให้รองรับ header */
+    }
+
+    .header {
+        background-color: #fff;
+        padding: 10px 0;
+        /* เพิ่ม Padding ให้ดูสมดุล */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        position: fixed;
+        /* ทำให้ header ติดอยู่ด้านบน */
+        top: 0;
+        /* จัดให้ชิดบนสุด */
+        left: 0;
+        /* ชิดซ้ายสุด */
+        width: 100%;
+        /* ครอบคลุมทั้งความกว้างของหน้าจอ */
+        z-index: 1000;
+        /* ให้อยู่เหนือองค์ประกอบอื่น */
+    }
+</style>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="image/logonew.jpg" alt="โลโก้แมว" class="logo-img">
+            </div>
+
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="home.html" target="_self">HOME</a></li>
+                    <li><a href="BMI.html" target="_self">BMI</a></li>
+                    <li><a href="history.html" target="_self">HISTORY</a></li>
+                    <li><a href="index.html"><img src="image/logout-icon.png" alt="Logout"
+                                style="width: 45px; height: 45px;"></a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <style>
+            .logo-img {
+                height: 60px;
+                /* กำหนดความสูงของโลโก้ */
+                width: auto;
+                /* ให้ปรับสัดส่วนอัตโนมัติ */
+                border-radius: 10px;
+                /* มุมมน */
+                object-fit: cover;
+                /* ให้ครอบคลุมพื้นที่ */
+            }
+
+            .container {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 0 20px;
+                height: 70px;
+                /* ปรับความสูงให้อยู่ในระดับเดียวกับโลโก้ */
+            }
+
+            .nav-menu ul {
+                list-style: none;
+                /* ลบจุดหน้ารายการ */
+                margin: 0;
+                padding: 0;
+                display: flex;
+                /* แสดงรายการในแนวนอน */
+            }
+
+            .nav-menu li {
+                margin-left: 50px;
+                /* ลดระยะห่างระหว่างแต่ละรายการเมนู */
+            }
+
+            .nav-menu a {
+                text-decoration: none;
+                color: #333;
+                font-weight: bold;
+                font-size: 1.2rem;
+                /* ลดขนาดตัวอักษรเล็กน้อยเพื่อสมดุล */
+                padding: 8px 10px;
+                /* ลดพื้นที่รอบข้อความ */
+                border-radius: 5px;
+                transition: background-color 0.3s ease;
+            }
+
+            .nav-menu a:hover {
+                color: #ff6f91;
+            }
+
+            
+        </style>
+    </header>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            /* จัดให้อยู่กลางแนวนอน */
+            align-items: center;
+            /* จัดให้อยู่กลางแนวตั้ง */
+            height: 100vh;
+            /* ครอบคลุมทั้งหน้าจอ */
+        }
+
+        table {
+            width: 80%;
+            /* กำหนดให้ตารางกว้าง 80% ของหน้าจอ */
+            margin: 0 auto;
+            /* จัดให้อยู่กึ่งกลาง */
+            border-spacing: 0;
+            /* เอาขอบระหว่างเซลล์ออก */
+            border-collapse: separate;
+            /* ใช้สำหรับใส่มุมโค้ง */
+            background-color: white;
+            /* พื้นหลังของตาราง */
+            border-radius: 15px;
+            /* มุมโค้งมน */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            /* เงาเบาๆ */
+            overflow: hidden;
+            /* ทำให้ขอบโค้งได้ผล */
+        }
+
+        th,
+        td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+            /* เส้นแบ่งสีอ่อน */
+        }
+
+        th {
+            background-color: #f8d7da;
+            /* สีหัวตาราง */
+            color: #333;
+            /* สีตัวอักษรหัวตาราง */
+            font-size: 1.2rem;
+        }
+
+        td {
+            color: #555;
+            /* สีตัวอักษรในเซลล์ */
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+            /* ลบเส้นขอบที่แถวสุดท้าย */
+        }
+
+        caption {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #333;
+        }
+    </style>
+    </head>
+
+
+
+    <table>
+        <caption>History</caption>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Details (Height, Weight, BMI)</th>
+            </tr>
+        </thead>
+        <tbody id="historyTableBody">
+            <!-- แถวประวัติจะถูกเพิ่มที่นี่ -->
+        </tbody>
+
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                // ตรวจสอบเมลผู้ใช้ที่ล็อกอิน
+                const userEmail = localStorage.getItem('loggedInEmail'); // สมมติว่ามีเมลผู้ใช้ล็อกอินเก็บไว้
+                if (!userEmail) {
+                    alert('กรุณาเข้าสู่ระบบก่อนดูประวัติ');
+                    return;
+                }
+
+                // คีย์สำหรับข้อมูลผู้ใช้งาน
+                const userKey = `userData_${userEmail}`;
+                const userData = JSON.parse(localStorage.getItem(userKey)) || {}; // ดึงข้อมูลผู้ใช้
+                const historyData = userData.history || []; // ประวัติของผู้ใช้ในฟิลด์ `history`
+
+                const historyTableBody = document.getElementById('historyTableBody');
+
+                // ตรวจสอบว่ามีประวัติหรือไม่
+                if (historyData.length > 0) {
+                    historyData.forEach(item => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                    <td>${item.date}</td>
+                    <td>
+                        <ul>
+                            <li>Height: ${item.height} cm</li>
+                            <li>Weight: ${item.weight} kg</li>
+                            <li>BMI: ${item.bmi}</li>
+                        </ul>
+                    </td>
+                `;
+                        historyTableBody.appendChild(row);
+                    });
+                } else {
+                    // แสดงข้อความเมื่อไม่มีข้อมูลประวัติ
+                    historyTableBody.innerHTML = '<tr><td colspan="2">ไม่มีข้อมูลประวัติ</td></tr>';
+                }
+            });
+        </script>
+
+</body>
+
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>loading</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        background-color: #ffe4e6;
+        color: #333;
+        text-align: center;
+        padding-top: 90px;
+        /* เพิ่มระยะห่างให้รองรับ header */
+    }
+
+    .header {
+        background-color: #fff;
+        padding: 10px 0;
+        /* เพิ่ม Padding ให้ดูสมดุล */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        position: fixed;
+        /* ทำให้ header ติดอยู่ด้านบน */
+        top: 0;
+        /* จัดให้ชิดบนสุด */
+        left: 0;
+        /* ชิดซ้ายสุด */
+        width: 100%;
+        /* ครอบคลุมทั้งความกว้างของหน้าจอ */
+        z-index: 1000;
+        /* ให้อยู่เหนือองค์ประกอบอื่น */
+    }
+
+    .container {
+        text-align: center;
+    }
+
+    .loading-cat {
+        width: 150px;
+        animation: bounce 1.5s infinite;
+    }
+
+    @keyframes bounce {
+
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(-20px);
+        }
+    }
+
+    .loading-text {
+        font-family: Arial, sans-serif;
+        font-size: 18px;
+        color: #666;
+        margin-top: 10px;
+    }
+</style>
+
+<body>
+    <!-- Container สำหรับ Animation -->
+    <div class="container">
+        <img class="loading-cat" src="image/loading.webp" alt="Loading Animation">
+        <div class="loading-text">Loading, Please Wait...</div>
+    </div>
+
+    <script>
+        // เปลี่ยนหน้าไปหน้าที่ 3 อัตโนมัติหลังจาก 3 วินาที
+        setTimeout(function () {
+            window.location.href = "home.html"; // เปลี่ยนลิงก์ไปยังหน้า BMI
+        }, 3000); // 3000ms = 3 วินาที
+    </script>
+
+    <style>
+        /* การตั้งค่าคอนเทนเนอร์ */
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            /* ให้ความสูงเต็มหน้าจอ */
+            width: 100%;
+            /* ให้ความกว้างเต็มหน้าจอ */
+            background-color: #ffe4e6;
+            /* เพิ่มสีพื้นหลัง (ปรับได้ตามต้องการ) */
+            text-align: center;
+            /* จัดข้อความให้อยู่ตรงกลาง */
+        }
+
+        /* การตั้งค่าภาพแมว */
+        .loading-cat {
+            width: 150px;
+            /* ขนาดความกว้างของภาพ (ปรับได้ตามต้องการ) */
+            height: auto;
+            /* ให้ปรับอัตราส่วนภาพอัตโนมัติ */
+            margin-bottom: 20px;
+            /* ระยะห่างระหว่างภาพกับข้อความ */
+        }
+
+        /* การตั้งค่าข้อความ */
+        .loading-text {
+            font-size: 20px;
+            /* ขนาดตัวอักษร */
+            font-weight: bold;
+            color: #333;
+            /* สีข้อความ */
+        }
+    </style>
+</body>
+
+
+</html>

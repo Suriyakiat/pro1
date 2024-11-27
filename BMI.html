@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        background-color: #ffe4e6;
+        color: #333;
+        text-align: center;
+        padding-top: 90px;
+        /* เพิ่มระยะห่างให้รองรับ header */
+    }
+
+    .header {
+        background-color: #fff;
+        padding: 10px 0;
+        /* เพิ่ม Padding ให้ดูสมดุล */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        position: fixed;
+        /* ทำให้ header ติดอยู่ด้านบน */
+        top: 0;
+        /* จัดให้ชิดบนสุด */
+        left: 0;
+        /* ชิดซ้ายสุด */
+        width: 100%;
+        /* ครอบคลุมทั้งความกว้างของหน้าจอ */
+        z-index: 1000;
+        /* ให้อยู่เหนือองค์ประกอบอื่น */
+    }
+</style>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="image/logonew.jpg" alt="โลโก้แมว" class="logo-img">
+            </div>
+
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="home.html">HOME</a></li>
+                    <li><a href="BMI.html" target="_self">BMI</a></li>
+                    <li><a href="history.html" target="_self">HISTORY</a></li>
+                    <li><a href="index.html"><img src="image/logout-icon.png" alt="Logout" style="width: 45px; height: 45px;"></a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <style>
+            .logo-img {
+                height: 70px;
+                /* กำหนดความสูง */
+                width: auto;
+                /* ให้ปรับสัดส่วนอัตโนมัติ */
+                border-radius: 10px;
+                /* มุมมน */
+                object-fit: cover;
+                /* ให้ครอบคลุมพื้นที่ */
+            }
+
+            .container {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                /* เพิ่มช่องว่างระหว่าง logo และเมนู */
+                padding: 0 20px;
+                height: 70px;
+                /* ปรับความสูงตามเนื้อหา */
+
+
+            }
+
+
+            .nav-menu ul {
+                list-style: none;
+                /* ลบจุดหน้ารายการ */
+                margin: 0;
+                /* ลบระยะห่างรอบ */
+                padding: 0;
+                /* ลบระยะห่างภายใน */
+                display: flex;
+                /* แสดงรายการในแนวนอน */
+            }
+
+            .nav-menu li {
+                margin-left: 100px;
+                /* ระยะห่างระหว่างแต่ละรายการ */
+            }
+
+            .nav-menu a {
+                text-decoration: none;
+                /* ลบขีดเส้นใต้ */
+                color: #333;
+                /* สีข้อความ */
+                font-weight: bold;
+                /*ตัวหนา*/
+                font-size: 1.5rem;
+                /* ขนาดตัวอักษรที่ใหญ่ขึ้น */
+                padding: 10px 15px;
+                /* เพิ่มพื้นที่รอบข้อความ */
+                border-radius: 5px;
+                /* ทำให้ปุ่มโค้งมนเล็กน้อย */
+                transition: background-color 0.3s ease;
+                /* เอฟเฟกต์เวลาเปลี่ยนสี */
+            }
+
+            .nav-menu a:hover {
+                color: #ff6f91;
+                /* สีเมนูเมื่อชี้เมาส์ */
+            }
+
+            .boxes-container {
+                display: flex;
+                justify-content: space-between;
+                /* จัดระยะห่างระหว่างกล่องให้เท่ากัน */
+                gap: 20px;
+                /* ช่องว่างระหว่างกล่อง */
+                margin: 20px auto;
+                /* ระยะห่างจากด้านบนและจัดกล่องให้อยู่กึ่งกลาง */
+                padding: 0 40px;
+                /* เว้นระยะห่างขอบซ้ายและขวาของเว็บ */
+                width: calc(100% - 80px);
+                /* กำหนดให้เต็มหน้ากว้าง ยกเว้นระยะ padding */
+                box-sizing: border-box;
+                /* ทำให้ padding ไม่กระทบกับความกว้าง */
+            }
+
+
+            .box {
+                flex: 1;
+                /* แต่ละกล่องจะขยายเท่ากัน */
+                max-width: calc((100% - 60px) / 3);
+                /* คำนวณความกว้างของกล่องเมื่อรวม gap */
+                padding: 10px;
+                background-color: #f4f4f4;
+                /* สีพื้นหลัง */
+                border: 2px solid #dccaca;
+                /* ขอบ */
+                border-radius: 8px;
+                /* มุมโค้ง */
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                /* เงา */
+                text-align: center;
+                /* จัดข้อความให้อยู่กลาง */
+            }
+
+            .box img {
+                width: 100%;
+                /* ขยายรูปให้เต็มความกว้างของกล่อง */
+                height: auto;
+                /* ปรับความสูงให้สมดุลตามสัดส่วน */
+                border-radius: 8px;
+                /* โค้งมุมตามกล่อง */
+                object-fit: cover;
+                /* ทำให้รูปภาพปรับตามขนาดกล่อง */
+            }
+
+            .box h2 {
+        font-size: 1.5rem;
+        color: #333;
+    }
+
+    .box h3 {
+        font-size: 1.2rem;
+        color: #666;
+        margin-top: 10px;
+    }
+
+    .box p {
+        font-size: 1rem;
+        color: #444;
+        line-height: 1.6;
+        margin-top: 10px;
+    }
+
+    .arrow-container {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .arrow-btn {
+        padding: 10px 20px;
+        font-size: 24px;
+        background-color: #ff6f91;
+        color: #fff;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .arrow-btn:hover {
+        background-color: #ff3b5c;
+    }
+        </style>
+    </header>
+</body>
+
+<body>
+
+    <div class="boxes-container">
+        <div class="box">
+            <img src="image/fat3.png" alt="fat3">
+            <h2>BMI มากกว่า 30</h2>
+            <h3>ถ้าคุณไม่ใช้คนออกกำลังกาย หรือนักเพาะกาย แปลว่าคุณอ้วนมากแล้ว</h3>
+            <h2>ข้อแนะนำ</h2>
+            <p>ค่อนข้างอันตราย เสี่ยงต่อการเกิดโรคร้ายแรงที่แฝงมากับความอ้วน 
+                หากค่า BMI อยู่ในระดับนี้ จะต้องปรับพฤติกรรมการทานอาหาร 
+                และควรเริ่มออกกำลังกาย และหากเลขยิ่งสูงกว่า 40.0 ยิ่งแสดงถึงความอ้วนที่มากขึ้น 
+                ควรไปตรวจสุขภาพ และปรึกษาแพทย์</p>
+        </div>
+        <div class="box">
+            <img src="image/fat2.png" alt="fat2">
+            <h2>BMI ระหว่าง 25 - 29.90</h2>
+            <h3>ถ้าคุณไม่ใช่คนออกกำลังกาย คุณเข้าเกณฑ์อ้วนแล้ว</h3>
+            <h2>ข้อแนะนำ</h2>
+            <p>อ้วนในระดับหนึ่ง ถึงแม้จะไม่ถึงเกณฑ์ที่ถือว่าอ้วนมาก ๆ 
+                แต่ก็ยังมีความเสี่ยงต่อการเกิดโรคที่มากับความอ้วนได้เช่นกัน ทั้งโรคเบาหวาน
+                 และความดันโลหิตสูง ควรปรับพฤติกรรมการทานอาหาร ออกกำลังกาย 
+                 และตรวจสุขภาพ</p>
+        </div>
+
+        <div class="box">
+            <img src="image/good.png" alt="good">
+            <h2>BMI ระหว่าง 18.50 - 24</h2>
+            <h3>คุณมีน้ำหนักอยู่ในเกณฑ์มาตรฐาน </h3>
+            <h2>ข้อแนะนำ</h2>
+            <p>น้ำหนักที่เหมาะสมสำหรับคนไทยคือค่า BMI ระหว่าง 18.5-24 
+                จัดอยู่ในเกณฑ์ปกติ ห่างไกลโรคที่เกิดจากความอ้วน 
+                และมีความเสี่ยงต่อการเกิดโรคต่าง ๆ น้อยที่สุด ควรพยายามรักษาระดับค่า 
+                BMI ให้อยู่ในระดับนี้ให้นานที่สุด และควรตรวจสุขภาพทุกปี</p>
+        </div>
+
+        <!-- เพิ่มกล่องที่ 5 -->
+        <div class="box">
+            <img src="image/thin.png" alt="thin">
+            <h2>BMI น้อยกว่า 18.50</h2>
+            <h3>คุณมีน้ำหนักน้อยหรือผอม</h3>
+            <h2>ข้อแนะนำ</h2>
+            <p>น้ำหนักน้อยกว่าปกติก็ไม่ค่อยดี หากคุณสูงมากแต่น้ำหนักน้อยเกินไป 
+                อาจเสี่ยงต่อการได้รับสารอาหารไม่เพียงพอหรือได้รับพลังงานไม่เพียงพอ 
+                ส่งผลให้ร่างกายอ่อนเพลียง่าย การรับประทานอาหารให้เพียงพอ 
+                และการออกกำลังกายเพื่อเสริมสร้างกล้ามเนื้อสามารถช่วยเพิ่มค่า BMI 
+                ให้อยู่ในเกณฑ์ปกติได้</p>
+        </div>
+    </div>
+
+</body>
+</html>

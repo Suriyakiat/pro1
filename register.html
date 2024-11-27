@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>register</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="main-profile">
+        <img src="image/profile.jpg" alt="profile" class="profile-img">
+    </div>
+
+    <div class="login">
+        <label for="email">อีเมล</label>
+        <input type="text" id="email" name="email" placeholder="กรอกอีเมล">
+
+        <label for="password">รหัสผ่าน</label>
+        <input type="password" id="password" name="password" placeholder="กรอกรหัสผ่าน">
+
+        <button type="button" id="goTologin">ลงทะเบียน</button>
+        <div id="login-result" class="login-result"></div>
+    </div>
+
+    <script>
+        document.getElementById('goTologin').addEventListener('click', function () {
+            const emailInput = document.getElementById('email');
+            const passwordInput = document.getElementById('password');
+            const resultDiv = document.getElementById('login-result');
+
+            const email = emailInput.value.trim();
+            const password = passwordInput.value.trim();
+
+            if (!email || !password) {
+                resultDiv.textContent = "กรุณากรอกอีเมลและรหัสผ่าน!";
+                resultDiv.style.color = "red";
+                return;
+            }
+
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!email.match(emailPattern)) {
+                resultDiv.textContent = "โปรดกรอกอีเมลที่ถูกต้อง!";
+                resultDiv.style.color = "red";
+                return;
+            }
+
+            // ส่งข้อมูลไปที่เซิร์ฟเวอร์
+            fetch('/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email: email, password: password })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message === "ลงทะเบียนสำเร็จ!") {
+                    resultDiv.textContent = data.message;
+                    resultDiv.style.color = "green";
+
+                    // ไปยังหน้า Login
+                    setTimeout(function () {
+                        window.location.href = "index.html";
+                    }, 2000);
+                } else {
+                    resultDiv.textContent = data.message;
+                    resultDiv.style.color = "red";
+                }
+            })
+            .catch(error => {
+                resultDiv.textContent = "เกิดข้อผิดพลาดในการลงทะเบียน!";
+                resultDiv.style.color = "red";
+            });
+        });
+    </script>
+
+</body>
+
+</html>

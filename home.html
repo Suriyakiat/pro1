@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOME</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="image/logonew.jpg" alt="โลโก้แมว" class="logo-img">
+            </div>
+
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="#home" target="_self">HOME</a></li>
+                    <li><a href="BMI.html" target="_self">BMI</a></li>
+                    <li><a href="history.html" target="_self">HISTORY</a></li>
+                    <li><a href="index.html"><img src="image/logout-icon.png" alt="Logout"
+                                style="width: 45px; height: 45px;"></a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="form-container">
+            <div class="circle-container">
+                <img src="image/profile.jpg" alt="profile" class="circle-img">
+            </div>
+
+            <div class="input-group">
+                <label for="name">ชื่อ:</label>
+                <input type="text" id="name" name="name" placeholder="กรอกชื่อของคุณ">
+            </div>
+
+            <div class="input-group">
+                <label for="weight">น้ำหนัก (kg):</label>
+                <input type="number" id="weight" name="weight" placeholder="กรอกน้ำหนักของคุณ">
+            </div>
+
+            <div class="input-group">
+                <label for="height">ส่วนสูง (cm):</label>
+                <input type="number" id="height" name="height" placeholder="กรอกส่วนสูงของคุณ">
+            </div>
+
+            <div class="input-group">
+                <label for="gender">เพศ:</label>
+                <select id="gender" name="gender">
+                    <option value="" disabled selected>เลือกเพศของคุณ</option>
+                    <option value="male">ชาย</option>
+                    <option value="female">หญิง</option>
+                    <option value="other">อื่น ๆ</option>
+                </select>
+            </div>
+
+            <div>
+                <button type="button" id="goToCalculate" class="custom-button">Calculate</button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.getElementById('goToCalculate').addEventListener('click', function () {
+            // ดึงค่าที่ผู้ใช้กรอกในฟอร์ม
+            const name = document.getElementById('name').value;
+            const weight = document.getElementById('weight').value;
+            const height = document.getElementById('height').value;
+            const gender = document.getElementById('gender').value;
+
+            // ตรวจสอบว่าผู้ใช้กรอกข้อมูลครบถ้วนหรือไม่
+            if (!name || !weight || !height || !gender) {
+                alert('กรุณากรอกข้อมูลให้ครบถ้วน!');
+                return;
+            }
+
+            const userEmail = 'example@email.com'; // กำหนด Email (สมมติว่าเป็น Email ที่ล็อกอิน)
+            const userKey = `userData_${userEmail}`;
+            const userData = { name, weight, height, gender, history: [] };
+            localStorage.setItem(userKey, JSON.stringify(userData));
+            localStorage.setItem('loggedInEmail', userEmail);
+
+
+            // บันทึกข้อมูลใน localStorage
+            localStorage.setItem('name', name);
+            localStorage.setItem('weight', weight);
+            localStorage.setItem('height', height);
+            localStorage.setItem('gender', gender);
+            localStorage.setItem('loggedInEmail', 'example@email.com'); // สมมติว่าผู้ใช้ล็อกอินแล้ว
+
+            // ย้ายไปหน้า calculate.html
+            window.location.href = 'calculate.html';
+        })
+    </script>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #ffe4e6;
+            color: #333;
+            text-align: center;
+            padding-top: 90px;
+        }
+
+        .header {
+            background-color: #fff;
+            padding: 10px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .logo-img {
+            height: 70px;
+            width: auto;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            height: 70px;
+        }
+
+        .nav-menu ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .nav-menu li {
+            margin-left: 30px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            font-size: 1.5rem;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: #ff6f91;
+        }
+
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .circle-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 5px solid #ff6f91;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+            text-align: left;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .input-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .input-group input,
+        .input-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .input-group select:focus {
+            outline: none;
+            border-color: #ff4c8f;
+            background-color: #ffe6f0;
+        }
+
+        .custom-button {
+            display: block;
+            width: 100%;
+            padding: 10px 15px;
+            font-size: 1rem;
+            font-weight: bold;
+            text-align: center;
+            color: white;
+            background-color: #ef3884;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .custom-button:hover {
+            background-color: #eb3992;
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .custom-button:active {
+            background-color: #e94e77;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</body>
+
+</html>
